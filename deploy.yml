@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-sample-project
+  labels:
+    app: my-sample-project
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: my-sample-project
+  template:
+    metadata:
+      labels:
+        app: my-sample-project
+    spec:
+      containers:
+      - name: my-sample-project
+        resources:
+          limits:
+            memory: 2000Mi
+          requests:
+            memory: 2000Mi
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /check-database
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+        livenessProbe:
+          httpGet:
+            path: /check-database
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        image: castronu/my-sample-project:0.0.1-SNAPSHOT
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: jdbc:postgresql://my-release-postgresql:5432/postgres 
+        - name: DATABASE_USERNAME
+          value: postgres
+        - name: DATABASE_PASSWORD
+          value: 6qK65BSsRz
+       
