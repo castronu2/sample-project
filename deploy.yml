@@ -24,29 +24,18 @@ spec:
           limits:
             memory: 2000Mi
           requests:
+            cpu:  "0.5"
             memory: 2000Mi
         imagePullPolicy: Always
-        readinessProbe:
-          httpGet:
-            path: /check-database
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 5
-          successThreshold: 1
-        livenessProbe:
-          httpGet:
-            path: /check-database
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 5
+
         image: castronu/my-sample-project:0.0.1-SNAPSHOT
         ports:
         - containerPort: 8080
         env:
         - name: DATABASE_URL
-          value: jdbc:postgresql://my-release-postgresql:5432/postgres 
+          value: jdbc:postgresql://my-release-postgresql:5432/postgres
         - name: DATABASE_USERNAME
-          value: postgres
+          value: "postgres"
         - name: DATABASE_PASSWORD
-          value: 6qK65BSsRz
+          value: "fVQXiquUSV"
        
