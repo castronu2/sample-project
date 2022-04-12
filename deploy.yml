@@ -24,7 +24,7 @@ spec:
           limits:
             memory: 2000Mi
           requests:
-            cpu:  "0.5"
+            cpu:  "0.6"
             memory: 2000Mi
         imagePullPolicy: Always
 
