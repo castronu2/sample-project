@@ -17,9 +17,9 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker tag sample-project:0.0.1-SNAPSHOT  castronu/my-sample-project:0.0.1-SNAPSHOT
+            docker tag sample-project:0.0.2-SNAPSHOT  castronu/my-sample-project:0.0.2-SNAPSHOT
             docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
-            docker push castronu/my-sample-project:0.0.1-SNAPSHOT
+            docker push castronu/my-sample-project:0.0.2-SNAPSHOT
 
 workflows:
   version: 2
